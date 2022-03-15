@@ -4,8 +4,9 @@
   Functions below for other parts of code.
 *///////////////////////////////////////////////////
 
-int         leftThres  = 0,               // Sets threshold variable for the left joystick
-            rightThres = 0;                // Sets threshold variable for the right joystick
+int         LThres,               // Sets threshold variable for the left joystick
+            RThres;               // Sets threshold variable for the right joystick
+
 
 const float liftGR    = 7,                // 7:1 Gear Ratio for back lift/scoop
             mogoGR    = 5,                // 5:1 Gear Ratio for front claw

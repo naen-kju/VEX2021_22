@@ -1,9 +1,7 @@
 #include <Auton.h>
 
-void YashMode(void)
+void drive(void)
 {
-  vexcodeInit();
-
   // Let Drive Motors Coast
   BRMtr.setBrake(coast);
   MRMtr.setBrake(coast);
@@ -23,19 +21,34 @@ void YashMode(void)
     MRMtr.spin(fwd, Controller1.Axis2.position(pct),pct);
     BRMtr.spin(fwd, Controller1.Axis2.position(pct),pct);
 
+    // Sets max and min Threshold for both Axis
+    LThres = Controller1.Axis3.position(pct);
+    RThres = Controller1.Axis2.position(pct);
+    // Let >=90% = 100% for left and right
+    if(LThres >= 90)
+      LThres = 100;
+    else if(LThres <= -90)
+      LThres = -100;
 
-    // Threshold for both Axis, let 90% = 100%
-    leftThres = Controller1.Axis3.position(pct);
-    if(leftThres > 90)
-      leftThres = 100;
-    else if(leftThres < -90)
-      leftThres = -100;
+    if(RThres >= 90)
+      RThres = 100;
+    else if(RThres <= -90)
+      RThres = -100;
 
-    rightThres = Controller1.Axis2.position(pct);
-    if(rightThres > 90)
-      rightThres = 100;
-    else if(rightThres < -90)
-      rightThres = -100;
+    // Let <=5% = 0% for left and right
+    if(LThres <= 5)
+      LThres = 0;
+    else if(LThres >= -5)
+      LThres = 0;
+
+    if(RThres <= 5)
+      RThres = 0;
+    else if(RThres >= -5)
+      RThres = -0;
+    
+
+
+    
       
     // Use wait to save resources
     wait(5, msec);

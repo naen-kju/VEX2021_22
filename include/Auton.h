@@ -1,6 +1,6 @@
 #include "PreAuton.h"
 
-void BryanMode(void) 
+void auton(void) 
 {
   // Insert Auton functions here.
 }
